@@ -1,0 +1,76 @@
+let web3;
+let contract;
+const contractAddress = "0xAf80e517c8470cB1122FfC84464fCefd8CCA5aDC"; 
+const abi = [
+  [ { "inputs": [],
+   "stateMutability": "nonpayable", "type": "constructor" },
+    { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "insured", "type": "address" },
+     { "indexed": false, "internalType": "uint256", "name": "policyID", "type": "uint256" }, 
+     { "indexed": false, "internalType": "uint256", "name": "claimAmount", "type": "uint256" } ],
+      "name": "ClaimFiled", 
+      "type": "event" },
+       { "anonymous": false,
+        "inputs": [ { "indexed": true, "internalType": "address", "name": "insured", "type": "address" }, 
+        { "indexed": false, "internalType": "uint256", "name": "policyID", "type": "uint256" },
+         { "indexed": false, "internalType": "uint256", "name": "paidAmount", "type": "uint256" } ],
+          "name": "ClaimPaid", "type": "event" }, 
+          { "inputs": [ { "internalType": "uint256", "name": "_claimAmount", "type": "uint256" } ], 
+          "name": "fileClaim", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+           { "inputs": [ { "internalType": "address", "name": "_insured", "type": "address" }, 
+           { "internalType": "uint256", "name": "_claimAmount", "type": "uint256" } ],
+            "name": "payClaim", "outputs": [], "stateMutability": "payable", "type": "function" },
+             { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "insured", "type": "address" }, 
+             { "indexed": false, "internalType": "uint256", "name": "policyID", "type": "uint256" },
+              { "indexed": false, "internalType": "uint256", "name": "coverageAmount", "type": "uint256" }, 
+              { "indexed": false, "internalType": "uint256", "name": "premium", "type": "uint256" },
+               { "indexed": false, "internalType": "uint256", "name": "startTime", "type": "uint256" }, 
+               { "indexed": false, "internalType": "uint256", "name": "endTime", "type": "uint256" } ], 
+               "name": "PolicyPurchased", "type": "event" }, 
+               { "inputs": [ { "internalType": "uint256", "name": "_policyID", "type": "uint256" },
+                { "internalType": "uint256", "name": "_coverageAmount", "type": "uint256" },
+                 { "internalType": "uint256", "name": "_premium", "type": "uint256" }, 
+                 { "internalType": "uint256", "name": "_durationInDays", "type": "uint256" } ],
+                  "name": "purchasePolicy",
+                   "outputs": [],
+                    "stateMutability": "payable", 
+                    "type": "function" },
+                     { "inputs": [], 
+                     "name": "withdrawFunds",
+                      "outputs": [], 
+                      "stateMutability": "nonpayable",
+                       "type": "function" },
+                        { "inputs": [], 
+                        "name": "checkPolicyDetails",
+                         "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" }, 
+                         { "internalType": "uint256", "name": "", "type": "uint256" }, 
+                         { "internalType": "uint256", "name": "", "type": "uint256" },
+                          { "internalType": "bool", "name": "", "type": "bool" },
+                           { "internalType": "uint256", "name": "", "type": "uint256" }, 
+                           { "internalType": "uint256", "name": "", "type": "uint256" } ], 
+                           "stateMutability": "view", "type": "function" },
+                            { "inputs": [], "name": "insuranceCompany",
+                             "outputs": [ { "internalType": "address", "name": "", "type": "address" } ],
+                              "stateMutability": "view", "type": "function" }, 
+                              { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], 
+                              "name": "policies",
+                               "outputs": [ { "internalType": "uint256", "name": "policyID", "type": "uint256" }, { "internalType": "address", "name": "insured", "type": "address" }, { "internalType": "uint256", "name": "premium", "type": "uint256" }, { "internalType": "uint256", "name": "coverageAmount", "type": "uint256" }, { "internalType": "bool", "name": "isClaimed", "type": "bool" }, { "internalType": "uint256", "name": "startTime", "type": "uint256" }, { "internalType": "uint256", "name": "endTime", "type": "uint256" } ], "stateMutability": "view", "type": "function" } ],
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "insuranceCompany",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  // ... rest of your ABI ...
+];
