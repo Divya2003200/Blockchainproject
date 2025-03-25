@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Health Insurance DApp</title>
+  <!-- Include Web3.js (v1.x) from a CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Health Insurance DApp</h1>
+
+    <!-- Connection Status -->
+    <div class="card">
+      <h2>1. Connect to MetaMask</h2>
+      <button id="connectBtn">Connect Wallet</button>
+      <p id="status">Not connected</p>
+    </div>
+
+    <!-- Purchase Policy -->
+    <div class="card">
+      <h2>2. Purchase Policy</h2>
+      <input type="number" id="policyID" placeholder="Policy ID" />
+      <input type="number" id="coverageAmount" placeholder="Coverage Amount" />
+      <input type="number" id="premium" placeholder="Premium (wei)" />
+      <input type="number" id="durationInDays" placeholder="Duration (Days)" />
+      <button id="purchaseBtn">Purchase Policy</button>
+      <p id="purchaseMsg"></p>
+    </div>
+
+    <!-- File Claim -->
+    <div class="card">
+      <h2>3. File Claim</h2>
+      <input type="number" id="claimAmount" placeholder="Claim Amount" />
+      <button id="fileClaimBtn">File Claim</button>
+      <p id="claimMsg"></p>
+    </div>
+
+    <!-- Pay Claim (Insurance Company) -->
+    <div class="card">
+      <h2>4. Pay Claim (Insurance Company Only)</h2>
+      <input type="text" id="insuredAddress" placeholder="Insured Address" />
+      <input type="number" id="payClaimAmount" placeholder="Claim Amount" />
+      <button id="payClaimBtn">Pay Claim</button>
+      <p id="payClaimMsg"></p>
+    </div>
+
+    <!-- Check Policy Details -->
+    <div class="card">
+      <h2>5. Check Policy Details</h2>
+      <button id="checkDetailsBtn">Check My Policy</button>
+      <p id="policyDetails"></p>
+    </div>
+
+    <!-- Withdraw Funds (Insurance Company) -->
+    <div class="card">
+      <h2>6. Withdraw Funds (Insurance Company Only)</h2>
+      <button id="withdrawBtn">Withdraw</button>
+      <p id="withdrawMsg"></p>
+    </div>
+  </div>
+
+  <!-- Our custom JS -->
+  <script src="app.js"></script>
+</body>
+</html>
